@@ -1,10 +1,18 @@
 #!/bin/bash
+
 git pull
-for f in inbound/*.txt; do
+
+# پردازش پیام‌های ایران (outbound)
+for f in outbound/*.txt; do
     [ -e "$f" ] || continue
-    echo "Message: $(cat $f)"
+    echo "Received from Iran: $(cat $f)"
+
+    # انتقال پیام به inbound برای ایران
+    echo "$(cat $f)" > inbound/$(basename $f)
+
     rm "$f"
 done
-git add inbound
-git commit -m "clean inbound"
+
+git add inbound outbound
+git commit -m "process messages"
 git push
