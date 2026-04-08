@@ -1,18 +1,17 @@
 #!/bin/bash
 
-git pull
+mkdir -p inbound
+mkdir -p outbound
 
-# پردازش پیام‌های ایران (outbound)
-for f in outbound/*.txt; do
+git pull --quiet
+
+# دریافت پیام‌های ورودی
+for f in inbound/*.txt; do
     [ -e "$f" ] || continue
-    echo "Received from Iran: $(cat $f)"
-
-    # انتقال پیام به inbound برای ایران
-    echo "$(cat $f)" > inbound/$(basename $f)
-
+    echo "[RECEIVED] $(cat "$f")"
     rm "$f"
 done
 
-git add inbound outbound
-git commit -m "process messages"
-git push
+git add inbound --quiet
+git commit -m "clean inbound" --quiet || true
+git push --quiet
