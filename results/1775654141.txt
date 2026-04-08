@@ -1,0 +1,12 @@
+[
+  "weather berlin result 1",
+  "weather berlin result 2",
+  "weather berlin result 3",
+  "weather berlin result 4",
+  "weather berlin result 5",
+  "weather berlin result 6",
+  "weather berlin result 7",
+  "weather berlin result 8",
+  "weather berlin result 9",
+  "weather berlin result 10"
+]
